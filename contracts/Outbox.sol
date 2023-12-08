@@ -7,6 +7,7 @@ contract Outbox {
         uint256 indexed messageId,
         uint256 indexed fromChainId,
         uint256 toChainId,
+        address from,
         address to,
         bytes data
     );
@@ -28,6 +29,6 @@ contract Outbox {
         currentMessageId++;
 
         // Emit the event with the message details
-        emit SentMessage(currentMessageId, block.chainid, chainId, to, data);
+        emit SentMessage(currentMessageId, block.chainid, chainId, msg.sender, to, data);
     }
 }
