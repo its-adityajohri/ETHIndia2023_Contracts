@@ -29,6 +29,13 @@ contract Outbox {
         currentMessageId++;
 
         // Emit the event with the message details
-        emit SentMessage(currentMessageId, block.chainid, chainId, msg.sender, to, data);
+        emit SentMessage(
+            currentMessageId,
+            block.chainid,
+            chainId,
+            msg.sender,
+            to,
+            data
+        );
     }
 }
