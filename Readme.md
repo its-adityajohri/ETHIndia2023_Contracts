@@ -1,4 +1,5 @@
 # Contracts
+
 ```
 {
   "44787": {
@@ -24,6 +25,5 @@
   }
 }
 ```
-
 
 ## Check decimal enclave repository. Decimal enclaves are key part of project as well.
