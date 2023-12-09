@@ -38,8 +38,8 @@ async function main() {
   console.log("Trying to transfer tokens");
   const tx = await tokenInstance
     .connect(admin)
-    .transfer(await bridgeInstance.getAddress(), tokenSupply.div(3).toFixed(0));
-  console.log("token tx", tx.hash);
+    .transfer(await bridgeInstance.getAddress(), tokenSupply.div(2).toFixed(0));
+  console.log("Token tx to bridge", tx.hash);
 
   try {
     verificationResult = await run("verify:verify", {

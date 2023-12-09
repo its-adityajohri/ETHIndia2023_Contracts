@@ -11,23 +11,39 @@ contract TokenBridge {
 
     mapping(uint256 => mapping(address => address)) public crossTokenAddress;
 
+    mapping(uint256 => address) public crossChainTokenBridgeMappers;
+
     constructor(Inbox _inbox, Outbox _outbox) {
         inbox = _inbox;
         outbox = _outbox;
     }
 
-    function setCrossTokenAddress(
+    function setCrossChainBridgeMapper(
         uint256 chainId,
+        address destinationBridgeMap
+    ) external {
+        require(
+            crossChainTokenBridgeMappers[chainId] == address(0),
+            "Inbox already mapped"
+        );
+        crossChainTokenBridgeMappers[chainId] = destinationBridgeMap;
+    }
+
+    function setCrossTokenAddress(
+        uint256 destinationChainId,
         address sourceTokenAddress,
         address targetTokenAddress
     ) external {
         // Ensure that the address is not already set
         require(
-            crossTokenAddress[chainId][sourceTokenAddress] == address(0),
+            crossTokenAddress[destinationChainId][sourceTokenAddress] ==
+                address(0),
             "Address already set"
         );
 
-        crossTokenAddress[chainId][sourceTokenAddress] = targetTokenAddress;
+        crossTokenAddress[destinationChainId][
+            sourceTokenAddress
+        ] = targetTokenAddress;
     }
 
     function bridgeToken(
@@ -42,6 +58,11 @@ contract TokenBridge {
             "Invalid token for target chain"
         );
 
+        require(
+            crossChainTokenBridgeMappers[chainId] != address(0),
+            "Invalid destination Inbox"
+        );
+
         // Transfer tokens to this contract
         IERC20(tokenAddress).transferFrom(msg.sender, address(this), amount);
 
@@ -53,7 +74,11 @@ contract TokenBridge {
         );
 
         // Send the message via Outbox
-        outbox.sendMessage(to, chainId, data);
+        outbox.sendMessage(
+            crossChainTokenBridgeMappers[chainId],
+            chainId,
+            data
+        );
     }
 
     function releaseToken(uint256 chainId, uint256 messageId) external {
@@ -66,8 +91,9 @@ contract TokenBridge {
             (address, address, uint256)
         );
 
-        // Ensure the caller is the intended recipient
-        require(to == msg.sender, "You are not the recipient of these tokens");
+        // Ensure right contract is consuming it
+        require(message.to != address(0), "Can't be zero");
+        require(message.to == address(this), "Right Contract not consuming it");
 
         // Transfer the tokens to the recipient
         IERC20(tokenAddress).transfer(to, amount);

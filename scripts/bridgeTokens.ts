@@ -1,5 +1,5 @@
 import { ethers, run } from "hardhat";
-import { Inbox__factory, TokenBridge__factory } from "../typechain-types";
+import { MyToken__factory, TokenBridge__factory } from "../typechain-types";
 
 import * as addresses from "../address.json";
 
@@ -7,6 +7,8 @@ const destinationChainId: string = "44787"; // celo
 // const destinationChainId: string = "11155111"; // sepolia
 
 async function main() {
+  const bridgeAmount = "1230000000000000000";
+
   const signers = await ethers.getSigners();
   const chainId = (await ethers.provider.getNetwork()).chainId.toString();
   console.log("using on chain id:", chainId);
@@ -19,33 +21,29 @@ async function main() {
   // @ts-ignore
   const contractAddress = addresses[chainId];
 
-  const inbox = Inbox__factory.connect(contractAddress.inbox, admin);
-  await inbox.grantRole(await inbox.OPERATOR_ROLE(), await admin.getAddress());
-  await inbox.grantRole(
-    await inbox.OPERATOR_ROLE(),
-    await operator.getAddress(),
-  );
-
   const tokenBridge = TokenBridge__factory.connect(
     contractAddress.bridgeInstance,
     admin,
   );
 
-  // @ts-ignore
-  const destinationContractAddress = addresses[destinationChainId];
-
-  let tx = await tokenBridge.setCrossTokenAddress(
-    destinationChainId,
+  const tokenInstance = MyToken__factory.connect(
     contractAddress.tokenInstance,
-    destinationContractAddress.tokenInstance,
+    admin,
+  );
+  let tx = await tokenInstance.approve(
+    await tokenBridge.getAddress(),
+    bridgeAmount,
   );
   await tx.wait();
 
-  tx = await tokenBridge.setCrossChainBridgeMapper(
+  tx = await tokenBridge.bridgeToken(
     destinationChainId,
-    destinationContractAddress.bridgeInstance,
+    await tokenInstance.getAddress(),
+    await admin.getAddress(),
+    bridgeAmount,
   );
-  await tx.wait();
+
+  console.log("Bridge transaction", tx.hash);
   return "Done";
 }
 
