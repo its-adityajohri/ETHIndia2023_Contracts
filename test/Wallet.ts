@@ -10,6 +10,7 @@ import {
 } from "../typechain-types";
 
 import * as kycData from "../kycData.json";
+import * as kycData2 from "../kycData2.json";
 
 describe("Check Wallet", () => {
   let wallet: KycWallet;
@@ -27,6 +28,26 @@ describe("Check Wallet", () => {
       kycData.c as [BigNumberish, BigNumberish],
       kycData.Input,
     );
+
+    // const a = [kycData2.proof.proof.pi_a[0], kycData2.proof.proof.pi_a[1]] as [
+    //   BigNumberish,
+    //   BigNumberish,
+    // ];
+    // const b = [kycData2.proof.proof.pi_b[0], kycData2.proof.proof.pi_b[1]] as [
+    //   [BigNumberish, BigNumberish],
+    //   [BigNumberish, BigNumberish],
+    // ];
+    // const c = [kycData2.proof.proof.pi_c[0], kycData2.proof.proof.pi_c[1]] as [
+    //   BigNumberish,
+    //   BigNumberish,
+    // ];
+    // wallet = await new KycWallet__factory(admin).deploy(
+    //   verifier,
+    //   a,
+    //   b,
+    //   c,
+    //   kycData.Input,
+    // );
   });
 
   it("Check wallet", async () => {

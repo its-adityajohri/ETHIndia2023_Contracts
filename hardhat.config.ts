@@ -71,12 +71,15 @@ const config: HardhatUserConfig = {
     },
     sepolia: {
       url: `${process.env.SEPOLIA_RPC_URL}`,
-      // NOTE: don't change the order of elements in the array, add new elements at the last.
-      accounts: [`${process.env.ADMIN}`],
+      accounts: [`${process.env.SEPOLIA_ADMIN}`],
     },
     arbSepolia: {
       url: `${process.env.ARB_SEPOLIA_RPC_URL}`,
       accounts: [`${process.env.ADMIN}`],
+    },
+    goerli: {
+      url: `${process.env.GOERLI_RPC}`,
+      accounts: [`${process.env.GOERLI_ADMIN}`],
     },
   },
 };
