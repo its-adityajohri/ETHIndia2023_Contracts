@@ -3,8 +3,9 @@ import { MyToken__factory, TokenBridge__factory } from "../typechain-types";
 
 import * as addresses from "../address.json";
 
-const destinationChainId: string = "44787"; // celo
+// const destinationChainId: string = "44787"; // celo
 // const destinationChainId: string = "11155111"; // sepolia
+const destinationChainId: string = "421614"; // arbSepolia
 
 async function main() {
   const bridgeAmount = "1230000000000000000";
