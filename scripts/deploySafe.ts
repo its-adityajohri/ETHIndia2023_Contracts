@@ -8,7 +8,8 @@ import {
 } from "@safe-global/protocol-kit";
 
 import { KycWallet__factory, Verifier__factory } from "../typechain-types";
-import * as kycData from "../kycData.json";
+// import * as kycData from "../kycData.json";
+import * as kycData from "../kycData2.json";
 
 async function main() {
   const signers = await ethers.getSigners();
