@@ -35,14 +35,11 @@ async function main() {
 
   const bridgeInstance = await deployTokenBridge(inbox, outbox, admin);
 
-  await (
-    await tokenInstance
-      .connect(admin)
-      .transfer(
-        await bridgeInstance.getAddress(),
-        tokenSupply.div(3).toFixed(0),
-      )
-  ).wait();
+  console.log("Trying to transfer tokens");
+  const tx = await tokenInstance
+    .connect(admin)
+    .transfer(await bridgeInstance.getAddress(), tokenSupply.div(3).toFixed(0));
+  console.log("token tx", tx.hash);
 
   try {
     verificationResult = await run("verify:verify", {
@@ -87,6 +84,7 @@ async function main() {
 }
 
 async function deployInbox(admin: HardhatEthersSigner): Promise<Inbox> {
+  console.log("Trying to deploy inbox");
   const inbox = await new Inbox__factory(admin).deploy(
     await admin.getAddress(),
   );
@@ -94,6 +92,7 @@ async function deployInbox(admin: HardhatEthersSigner): Promise<Inbox> {
 }
 
 async function deployOutbox(admin: HardhatEthersSigner): Promise<Outbox> {
+  console.log("Trying to deploy outbox");
   const outbox = await new Outbox__factory(admin).deploy();
   return outbox;
 }
@@ -103,6 +102,7 @@ async function deployToken(
   symbol: string,
   admin: HardhatEthersSigner,
 ): Promise<MyToken> {
+  console.log("Trying to deploy Token");
   const tokenInstance = await new MyToken__factory(admin).deploy(
     name,
     symbol,
@@ -117,6 +117,7 @@ async function deployTokenBridge(
   outbox: Outbox,
   admin: HardhatEthersSigner,
 ): Promise<TokenBridge> {
+  console.log("Trying to deploy Bridge");
   const instance = await new TokenBridge__factory(admin).deploy(inbox, outbox);
   return instance;
 }

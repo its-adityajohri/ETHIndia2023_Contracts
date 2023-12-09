@@ -71,15 +71,27 @@ const config: HardhatUserConfig = {
     },
     sepolia: {
       url: `${process.env.SEPOLIA_RPC_URL}`,
-      accounts: [`${process.env.SEPOLIA_ADMIN}`],
+      accounts: [`${process.env.ADMIN}`, `${process.env.OPERATOR}`],
     },
     arbSepolia: {
       url: `${process.env.ARB_SEPOLIA_RPC_URL}`,
-      accounts: [`${process.env.ADMIN}`],
+      accounts: [`${process.env.ADMIN}`, `${process.env.OPERATOR}`],
     },
     goerli: {
       url: `${process.env.GOERLI_RPC}`,
-      accounts: [`${process.env.GOERLI_ADMIN}`],
+      accounts: [`${process.env.ADMIN}`, `${process.env.OPERATOR}`],
+    },
+    scroll: {
+      url: `${process.env.SCROLL_RPC}`,
+      accounts: [`${process.env.ADMIN}`, `${process.env.OPERATOR}`],
+    },
+    celo: {
+      url: "https://alfajores-forno.celo-testnet.org",
+      accounts: [`${process.env.ADMIN}`, `${process.env.OPERATOR}`],
+    },
+    pzkevm: {
+      url: "https://alfajores-forno.celo-testnet.org",
+      accounts: [`${process.env.ADMIN}`, `${process.env.OPERATOR}`],
     },
   },
 };

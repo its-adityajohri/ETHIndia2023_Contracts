@@ -1,0 +1,16 @@
+{
+  "44787": {
+    "chainId": "44787",
+    "inbox": "0x42ACd5984Ef828154E478da4Ca1e6f1dd2b7ebd0",
+    "outbox": "0x4C3Eae65dCAdA64979691a72cfB42cF67bd9BD3C",
+    "tokenInstance": "0xB6Cf76Ea7736D80ae4F5A5aF69627f66565B815C",
+    "bridgeInstance": "0x784C5cf507E7F40D22d3BC66cD7435C83667F0a1"
+  },
+  "11155111": {
+    "chainId": "11155111",
+    "inbox": "0x42ACd5984Ef828154E478da4Ca1e6f1dd2b7ebd0",
+    "outbox": "0x4C3Eae65dCAdA64979691a72cfB42cF67bd9BD3C",
+    "tokenInstance": "0xB6Cf76Ea7736D80ae4F5A5aF69627f66565B815C",
+    "bridgeInstance": "0x784C5cf507E7F40D22d3BC66cD7435C83667F0a1"
+  }
+}
