@@ -19,5 +19,12 @@
     "outbox": "0x4C3Eae65dCAdA64979691a72cfB42cF67bd9BD3C",
     "tokenInstance": "0xB6Cf76Ea7736D80ae4F5A5aF69627f66565B815C",
     "bridgeInstance": "0x784C5cf507E7F40D22d3BC66cD7435C83667F0a1"
+  },
+  "534351": {
+    "chainId": "534351",
+    "inbox": "0x174f9F33dacF94C0BBeDeA5464eE0F9f5d044f9B",
+    "outbox": "0x56B5fe0a909EC427dA0Af140E91F3C67cac0Cdbe",
+    "tokenInstance": "0xC55BC1E310D73a1D07C017E90a6eE1d216C01534",
+    "bridgeInstance": "0xaA01d541a7E75f034bb6397D45630Ac1d9eE1f44"
   }
 }

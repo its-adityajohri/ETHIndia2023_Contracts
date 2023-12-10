@@ -57,10 +57,7 @@ async function main() {
 
     verificationResult = await run("verify:verify", {
       address: contractAddress.bridgeInstance,
-      constructorArguments: [
-        contractAddress.inbox,
-        contractAddress.outbox
-      ],
+      constructorArguments: [contractAddress.inbox, contractAddress.outbox],
     });
   } catch (ex) {
     console.log(ex);
