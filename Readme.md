@@ -37,6 +37,18 @@
   }
 ```
 
+## Scroll Testnet
+
+```
+  {
+    "chainId": "534351",
+    "inbox": "0x174f9F33dacF94C0BBeDeA5464eE0F9f5d044f9B",
+    "outbox": "0x56B5fe0a909EC427dA0Af140E91F3C67cac0Cdbe",
+    "tokenInstance": "0xC55BC1E310D73a1D07C017E90a6eE1d216C01534",
+    "bridgeInstance": "0xaA01d541a7E75f034bb6397D45630Ac1d9eE1f44"
+  }
+```
+
 ## Check decimal enclave repository. Decimal enclaves are key part of project as well.
 
 [enclaves repo](https://github.com/its-adityajohri/ETHIndia2023_enclaves.git)
